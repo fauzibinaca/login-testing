@@ -1,63 +1,97 @@
-Selenium Login Test Script
 
-Script ini menggunakan Selenium untuk mengotomatisasi pengujian login ke halaman https://fauzi.ukm.id/dashboard/. Script akan memasukkan kredensial yang diberikan dan memverifikasi apakah login berhasil dengan memeriksa URL yang diakses setelah login.
-Persyaratan
+# Selenium Automated Login Test Script
 
-Sebelum menjalankan script ini, pastikan Anda telah menginstal:
+Script ini adalah solusi otomatisasi menggunakan Selenium untuk menguji login pada halaman `https://fauzi.ukm.id/dashboard/`. Script ini memasukkan kredensial yang ditentukan, mengklik tombol login, dan memverifikasi hasil login dengan memeriksa URL setelah login.
 
-    Python (direkomendasikan versi 3.7 atau lebih baru)
-    Google Chrome Browser
-    ChromeDriver yang kompatibel dengan versi Google Chrome yang terinstal.
+## Prasyarat
 
-Langkah Instalasi
+### 1. Instalasi Python
+Pastikan **Python** (versi 3.7 atau lebih baru) telah terpasang di sistem Anda. Untuk memeriksa versi Python:
+```bash
+python3 --version
+```
 
-    Kloning atau Unduh Repository
-    Kloning repository ini atau unduh file .py script.
+### 2. Instalasi Google Chrome dan ChromeDriver
+   - **Google Chrome**: Unduh dan instal Google Chrome terbaru dari [situs resmi](https://www.google.com/chrome/).
+   - **ChromeDriver**: Pastikan versi ChromeDriver kompatibel dengan versi Chrome yang terpasang. Unduh dari [ChromeDriver download page](https://chromedriver.chromium.org/downloads) dan tempatkan `chromedriver` di `/usr/bin/` atau path lain yang diinginkan.
 
-    Buat Virtual Environment (Opsional tetapi Direkomendasikan)
+### 3. Instalasi pustaka Selenium
+   - Gunakan pip untuk menginstal pustaka Selenium:
+     ```bash
+     pip install selenium
+     ```
 
-python3 -m venv venv
-source venv/bin/activate  # Untuk MacOS/Linux
-.\venv\Scripts\activate   # Untuk Windows
+## Instalasi dan Menjalankan Script
 
-Instalasi Dependensi
-Pastikan Anda menginstal Selenium dan dependensi lainnya dengan menjalankan perintah berikut:
+1. **Clone atau Unduh Repository**
+   ```bash
+   git clone https://github.com/username/repo.git
+   cd repo
+   ```
 
-    pip install selenium
+2. **Membuat Virtual Environment (Opsional)**
+   Disarankan untuk menggunakan virtual environment agar instalasi pustaka terisolasi:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # MacOS/Linux
+   .\venv\Scripts\activate   # Windows
+   ```
 
-    Download ChromeDriver
-    Download ChromeDriver yang kompatibel dengan versi Chrome Anda di tautan ini.
-        Ekstrak file chromedriver dan letakkan di direktori yang diinginkan.
-        Perbarui variabel service = Service('/path/to/chromedriver') pada script sesuai lokasi path chromedriver.
+3. **Instalasi Dependensi**
+   Jika menggunakan virtual environment, pastikan pustaka Selenium terinstal:
+   ```bash
+   pip install selenium
+   ```
 
-Menjalankan Script
+4. **Konfigurasi Path ChromeDriver dan Kredensial**
+   - Buka `tes-login.py` dan sesuaikan path `chromedriver` dengan lokasi yang benar:
+     ```python
+     service = Service('/path/to/chromedriver')  # Ganti dengan path aktual
+     ```
+   - Masukkan kredensial login yang valid:
+     ```python
+     username_field.send_keys("23.ozzie@gmail.com")  # Ganti dengan email yang benar
+     password_field.send_keys("v*&cb7?~4*kWp,)")     # Ganti dengan password yang benar
+     ```
 
-    Buka Script Pastikan Anda telah membuka terminal atau command prompt pada folder yang berisi script ini.
+## Menjalankan Script
 
-    Sesuaikan Kredensial Login Buka script dan ganti:
-        username_field.send_keys("23.ozzie@gmail.com") - Masukkan username Anda.
-        password_field.send_keys("v*&cb7?~4*kWp,)") - Masukkan password Anda.
+1. Pastikan berada di direktori yang berisi `tes-login.py`.
+2. Jalankan script menggunakan:
+   ```bash
+   python tes-login.py
+   ```
 
-    Jalankan Script Jalankan perintah berikut:
+3. **Hasil Output**
+   Script akan menguji login dan menampilkan:
+   - "Login berhasil." jika berhasil login.
+   - "Login gagal." jika kredensial salah atau login tidak berhasil.
 
-    python tes-login.py
+## Opsi Konfigurasi Tambahan
 
-    Output Script akan menampilkan apakah login berhasil atau tidak berdasarkan URL setelah proses login.
+- **Menonaktifkan Headless Mode**: Jika Anda ingin melihat tampilan browser saat menjalankan pengujian, hapus baris berikut:
+  ```python
+  options.add_argument('--headless')
+  ```
 
-Pengaturan Konfigurasi (Opsional)
-Menyesuaikan Lokasi ChromeDriver
+- **Mengganti `user-agent`**: Anda dapat mengubah `user-agent` jika diperlukan:
+  ```python
+  options.add_argument('user-agent=Mozilla/5.0 ...')
+  ```
 
-Jika chromedriver berada di lokasi lain, sesuaikan path di baris berikut:
+## Troubleshooting
 
-service = Service('/path/to/chromedriver')
+- **Versi Chrome Tidak Kompatibel**: Pastikan `chromedriver` sesuai dengan versi Chrome yang digunakan.
+- **Error Permission di ChromeDriver**: Jika ada error terkait izin, jalankan:
+  ```bash
+  chmod +x /path/to/chromedriver
+  ```
 
-Menambahkan Opsi Tambahan
+## Referensi
 
-Anda dapat mengaktifkan atau menonaktifkan opsi di Selenium sesuai kebutuhan. Contoh, untuk menjalankan dengan UI (non-headless), hapus atau komentari options.add_argument('--headless').
-Debugging
+- [Selenium Documentation](https://www.selenium.dev/documentation/)
+- [ChromeDriver Documentation](https://chromedriver.chromium.org/)
 
-Jika mengalami masalah, pastikan:
+---
 
-    Chrome dan chromedriver versi kompatibel.
-    Semua dependensi telah diinstal.
-    Gunakan command pip install -r requirements.txt untuk memastikan semua paket terinstal.
+Script ini membantu mengotomatisasi pengujian login untuk memudahkan verifikasi kredensial di berbagai aplikasi web.
