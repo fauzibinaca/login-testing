@@ -50,8 +50,8 @@ python3 --version
      ```
    - Masukkan kredensial login yang valid:
      ```python
-     username_field.send_keys("23.ozzie@gmail.com")  # Ganti dengan email yang benar
-     password_field.send_keys("v*&cb7?~4*kWp,)")     # Ganti dengan password yang benar
+     username_field.send_keys("YOUR_USERNAME")  # Ganti dengan email yang benar
+     password_field.send_keys("YOUR_PASSWORD")     # Ganti dengan password yang benar
      ```
 
 ## Menjalankan Script
